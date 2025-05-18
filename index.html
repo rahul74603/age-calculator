@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>उम्र कैलकुलेटर - Age Calculator in Hindi</title>
+  <meta name="description" content="अपनी जन्म तिथि के आधार पर सटीक उम्र (वर्ष, महीने, दिन) जानें। यह आसान और फ्री हिंदी एज कैलकुलेटर टूल है।">
+  <meta name="keywords" content="Age Calculator, उम्र कैलकुलेटर, जन्म तिथि से उम्र निकालें, Age in Hindi, Hindi Calculator Tool">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f2f2;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    label, input, button {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    input {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #2980b9;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    button:hover {
+      background: #1c5984;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>उम्र कैलकुलेटर</h1>
+  <label for="dob">अपनी जन्म तिथि चुनें:</label>
+  <input type="date" id="dob" />
+  <button onclick="calculateAge()">उम्र निकालें</button>
+
+  <div class="result" id="result"></div>
+
+  <footer>
+    © 2025 AgeTool.in | सभी अधिकार सुरक्षित हैं
+  </footer>
+
+  <script>
+    function calculateAge() {
+      const dobInput = document.getElementById("dob").value;
+      if (!dobInput) {
+        alert("कृपया अपनी जन्म तिथि भरें");
+        return;
+      }
+      const dob = new Date(dobInput);
+      const today = new Date();
+
+      let years = today.getFullYear() - dob.getFullYear();
+      let months = today.getMonth() - dob.getMonth();
+      let days = today.getDate() - dob.getDate();
+
+      if (days < 0) {
+        months--;
+        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      const result = `आपकी उम्र है: <b>${years} वर्ष, ${months} महीने, ${days} दिन</b>`;
+      document.getElementById("result").innerHTML = result;
+    }
+  </script>
+</body>
+</html>
